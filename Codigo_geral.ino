@@ -12,6 +12,7 @@ float celcius;
 #include <Adafruit_BMP280.h>
 #include <LiquidCrystal_I2C.h>
 
+// definindo o pino 2 para a entrada do senssor DHT
 #define DHTPIN 2     
 #define DHTTYPE DHT22   
 DHT dht(DHTPIN, DHTTYPE);
@@ -64,7 +65,7 @@ void setup() {
 // criando o loop do programa
 void loop() {
   //Temperatura(TMP)
-  sensorValue1 = analogRead(A0);
+  sensorValue1 = analogRead(A0); //entrada analógica A0
   volts = (sensorValue1 *1.1)/1023.0;
   celcius = 105.1369631 * volts-50.19079209; //calibrando o sensor
   lcd.setCursor(2,0); //escolhendo as linhas para exibiçao do texto
@@ -104,7 +105,7 @@ void loop() {
   lcd.clear();
   
   //Luminosidade
-  sensorValue3 = analogRead(A1);
+  sensorValue3 = analogRead(A1); //entrada analógica A1
   tensao = (sensorValue3/1023.0)*1.1;
   res = (tensao* 100000.0)/(3.3-tensao);
   lum = pow(10,4.38-0.58*log10(res));
